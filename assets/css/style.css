@@ -1,0 +1,84 @@
+::root {
+    --primary-color: #0F0F0F;
+}
+
+* {
+    font-family: "Roboto", Arial, sans-serif;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#page-login {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-image: url(../img/bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content-login {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: rgb(15, 15, 15, .7);
+    border-radius: 15px;
+    padding: 40px 20px;
+}
+
+.logotipo {
+    width: 164px;
+    margin: 0 auto;
+}
+
+#form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.label-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label-input label,
+.label-input input#name {
+    color: #FFF;
+}
+
+.label-input input#name,
+button#play {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid #F2CD00;
+    font-size: 1rem;
+    background-color: transparent;
+}
+
+.label-input input#name:focus {
+    outline: none;
+}
+
+button#play {
+    cursor: pointer;
+    background-color: #F2CD00;
+    color: #FFF;
+    font-weight: bold;
+    border: 0;
+}
+
+button#play:disabled {
+    background-color: rgba(242, 205, 0, .3);
+    color: rgba(255, 255, 255, .4);
+    cursor: default;
+}
