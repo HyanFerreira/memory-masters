@@ -1,0 +1,96 @@
+body {
+    background-color: #0F0F0F;
+}
+
+#page-game {
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 40px 10px 10px 10px;
+}
+
+header {
+    height: 60px;
+    background-color: #F2CD00;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.player-name h1,
+.timer-game h1 {
+    color: #0F0F0F;
+}
+
+.timer-game {}
+
+.content-game {
+    padding: 50px 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 10px;
+    transition: all 400ms ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.face-reverse {
+    transform: rotateY(180deg);
+}
+
+.front {
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back {
+    background-color: #F2CD00;
+    backface-visibility: hidden;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card.disable .face {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+button#btn-correct {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 0;
+    font-size: 1rem;
+    color: #0F0F0F;
+    background-color: #F2CD00;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+button#btn-correct:disabled {
+    background-color: rgb(242, 205, 0, 0.4);
+    color: rgb(15, 15, 15, .6);
+    cursor: default;
+}

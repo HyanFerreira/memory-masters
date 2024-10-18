@@ -4,11 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Masters</title>
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/game.css">
+    <title>Memory Masters - Início</title>
 </head>
 
 <body>
-
+    <div id="page-game">
+        <header>
+            <div class="player-name">
+                <h1 id="player-display">Player</h1>
+            </div>
+            <div class="timer-game">
+                <h1>00:00</h1>
+            </div>
+        </header>
+        <div class="content-game">
+            <div class="card" data-term="html5">
+                <div class="face front">
+                    <div class="face-reverse">
+                        <p>HTML5</p>
+                    </div>
+                </div>
+                <div class="face back"></div>
+            </div>
+            <div class="card" data-term="html5">
+                <div class="face front">
+                    <div class="face-reverse">
+                        <p>HTML5</p>
+                    </div>
+                </div>
+                <div class="face back"></div>
+            </div>
+            <div class="card" data-term="css">
+                <div class="face front">
+                    <div class="face-reverse">
+                        <p>CSS</p>
+                    </div>
+                </div>
+                <div class="face back"></div>
+            </div>
+            <div class="card" data-term="css">
+                <div class="face front">
+                    <div class="face-reverse">
+                        <p>CSS</p>
+                    </div>
+                </div>
+                <div class="face back"></div>
+            </div>
+        </div>
+        <div class="menu">
+            <button id="btn-correct" disabled>Correto?</button>
+        </div>
+    </div>
+    <script src="../assets/js/game.js"></script>
 </body>
 
 </html>
