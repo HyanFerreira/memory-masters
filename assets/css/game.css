@@ -1,5 +1,43 @@
 body {
+    /* background-color: #0F0F0F; */
+}
+
+.modal-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-game {
+    width: 400px;
+    height: 500px;
     background-color: #0F0F0F;
+}
+
+.options {
+    display: flex;
+    gap: 15px;
+}
+
+.options button {
+    background-color: transparent;
+    border: 2px solid #0F0F0F;
+    transition: ease-in-out .3s;
+}
+
+.options button:hover {
+    background-color: #0F0F0F;
+    color: #F2CD00;
+}
+
+.options button.active {
+    background-color: #0F0F0F;
+    color: #F2CD00;
 }
 
 #page-game {
@@ -7,6 +45,7 @@ body {
     height: 100vh;
     margin: 0 auto;
     padding: 40px 10px 10px 10px;
+    display: none;
 }
 
 header {
@@ -15,15 +54,13 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    padding: 15px;
 }
 
 .player-name h1,
 .timer-game h1 {
     color: #0F0F0F;
 }
-
-.timer-game {}
 
 .content-game {
     padding: 50px 0;
@@ -39,6 +76,7 @@ header {
     border-radius: 10px;
     transition: all 400ms ease-in-out;
     transform-style: preserve-3d;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .face {
@@ -56,11 +94,19 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
 }
 
 .back {
     background-color: #F2CD00;
     backface-visibility: hidden;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+}
+
+.back img {
+    width: 148px;
 }
 
 .card.flipped {
@@ -79,6 +125,11 @@ header {
 }
 
 button#btn-correct {
+    display: none;
+}
+
+button#btn-correct,
+.options button {
     padding: 10px 15px;
     border-radius: 10px;
     border: 0;

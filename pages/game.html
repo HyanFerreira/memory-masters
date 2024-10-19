@@ -10,53 +10,28 @@
 </head>
 
 <body>
+    <div class="modal-menu">
+        <div class="option-game">
+            <div class="options">
+                <button id="op1">HTML</button>
+                <button id="op2">CSS</button>
+            </div>
+        </div>
+    </div>
     <div id="page-game">
         <header>
             <div class="player-name">
                 <h1 id="player-display">Player</h1>
             </div>
-            <div class="timer-game">
-                <h1>00:00</h1>
-            </div>
         </header>
         <div class="content-game">
-            <div class="card" data-term="html5">
-                <div class="face front">
-                    <div class="face-reverse">
-                        <p>HTML5</p>
-                    </div>
-                </div>
-                <div class="face back"></div>
-            </div>
-            <div class="card" data-term="html5">
-                <div class="face front">
-                    <div class="face-reverse">
-                        <p>HTML5</p>
-                    </div>
-                </div>
-                <div class="face back"></div>
-            </div>
-            <div class="card" data-term="css">
-                <div class="face front">
-                    <div class="face-reverse">
-                        <p>CSS</p>
-                    </div>
-                </div>
-                <div class="face back"></div>
-            </div>
-            <div class="card" data-term="css">
-                <div class="face front">
-                    <div class="face-reverse">
-                        <p>CSS</p>
-                    </div>
-                </div>
-                <div class="face back"></div>
-            </div>
+            <!-- cards -->
         </div>
         <div class="menu">
             <button id="btn-correct" disabled>Correto?</button>
         </div>
     </div>
+    <script src="../assets/js/modelo.js"></script>
     <script src="../assets/js/game.js"></script>
 </body>
 
