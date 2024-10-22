@@ -1,0 +1,120 @@
+#page-login {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    /* background-color: #0F0F0F; */
+}
+
+.content-player {
+    width: 320px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #F2CD00;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.logotipo {
+    width: 164px;
+    margin: 0 auto;
+}
+
+.content-player h1 {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.playerName-playerOption {
+    position: relative;
+    height: 100%;
+}
+
+.playerName {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 99;
+}
+
+.playerOption {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 9;
+}
+
+.form-player {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-grow: 1;
+}
+
+.form-player button {
+    align-self: flex-end;
+}
+
+.label-input {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.label-input label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translate(0, -35%);
+    transition: ease-in-out .2s;
+}
+
+.label-input input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border: 2px solid #0F0F0F;
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.label-input input:focus {
+    outline: none;
+}
+
+.label-input input:focus+label,
+.label-input input:valid+label {
+    font-size: 0.8rem;
+    top: 0;
+    transform: translate(-5px, 0);
+    background-color: #F2CD00;
+    padding: 0 5px;
+}
+
+.button {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0F0F0F;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #F2CD00;
+    cursor: pointer;
+}
+
+.button:disabled {
+    background-color: rgba(15, 15, 15, 0.6);
+    color: rgba(242, 206, 0, 0.8);
+    cursor: auto;
+}

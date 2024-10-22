@@ -7,26 +7,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="./assets/css/reset.css">
-    <link rel="stylesheet" href="./assets/css/login.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Memory Masters - Entrar</title>
 </head>
 
 <body>
     <div id="page-login">
-        <div class="content-login">
+        <div class="content-player">
             <div class="logotipo">
                 <img src="./assets/img/memory_masters_two.svg" alt="Memory Masters">
             </div>
-            <form id="form-login">
-                <div class="label-input">
-                    <label for="name">Nome:</label>
-                    <input id="name" type="text">
+            <div class="playerName-playerOption">
+                <div class="playerName">
+                    <h1>Insira um nome de jogador(a)</h1>
+                    <form class="form-player" id="form-player">
+                        <div class="label-input">
+                            <input id="name" type="text" required>
+                            <label for="name">Player</label>
+                        </div>
+                        <button class="button" id="next-button" type="submit" disabled>Próximo</button>
+                    </form>
                 </div>
-                <button type="submit" id="play" disabled>Play</button>
-            </form>
+                <div class="playerOption"></div>
+            </div>
         </div>
     </div>
-    <script src="./assets/js/login.js"></script>
+    <script src="./assets/js/player.js"></script>
 </body>
 
 </html>

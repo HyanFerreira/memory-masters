@@ -1,51 +1,8 @@
-body {
-    /* background-color: #0F0F0F; */
-}
-
-.modal-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.option-game {
-    width: 400px;
-    height: 500px;
-    background-color: #0F0F0F;
-}
-
-.options {
-    display: flex;
-    gap: 15px;
-}
-
-.options button {
-    background-color: transparent;
-    border: 2px solid #0F0F0F;
-    transition: ease-in-out .3s;
-}
-
-.options button:hover {
-    background-color: #0F0F0F;
-    color: #F2CD00;
-}
-
-.options button.active {
-    background-color: #0F0F0F;
-    color: #F2CD00;
-}
-
 #page-game {
     max-width: 1200px;
     height: 100vh;
     margin: 0 auto;
     padding: 40px 10px 10px 10px;
-    display: none;
 }
 
 header {

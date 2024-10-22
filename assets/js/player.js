@@ -1,21 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
   const playerName = document.getElementById("name");
-  const playButton = document.getElementById("play");
-  const formLogin = document.getElementById("form-login");
+  const nextButton = document.getElementById("next-button");
+  const formLogin = document.getElementById("form-player");
 
   const validatePlayerName = ({ target }) => {
     if (target.value.length > 2) {
-      playButton.removeAttribute("disabled");
+      nextButton.removeAttribute("disabled");
       return;
     }
 
-    playButton.setAttribute("disabled", "");
+    nextButton.setAttribute("disabled", "");
   };
 
   const handleSubmit = event => {
     event.preventDefault();
     localStorage.setItem("player", playerName.value);
-    window.location = "../../pages/game.html";
   };
 
   playerName.addEventListener("input", validatePlayerName);
