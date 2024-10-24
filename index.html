@@ -18,17 +18,32 @@
                 <img src="./assets/img/memory_masters_two.svg" alt="Memory Masters">
             </div>
             <div class="playerName-playerOption">
-                <div class="playerName">
+                <div class="playerName active">
                     <h1>Insira um nome de jogador(a)</h1>
                     <form class="form-player" id="form-player">
                         <div class="label-input">
-                            <input id="name" type="text" required>
+                            <input id="name" type="text" autocomplete="off" required>
                             <label for="name">Player</label>
+                            <span class="clear-name">X</span>
                         </div>
                         <button class="button" id="next-button" type="submit" disabled>Próximo</button>
                     </form>
                 </div>
-                <div class="playerOption"></div>
+                <div class="playerOption">
+                    <h1>Selecione um modo de jogo</h1>
+                    <div class="content-game">
+                        <div class="options-game">
+                            <input type="radio" name="option" value="modeloHTML" id="html" checked>
+                            <label for="html">HTML</label>
+                            <input type="radio" name="option" value="modeloCSS" id="css">
+                            <label for="css">CSS</label>
+                        </div>
+                        <div class="btns-game">
+                            <button class="button" id="prev-button">Voltar</button>
+                            <button class="button" id="play-button" type="submit">Jogar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

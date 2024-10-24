@@ -5,6 +5,12 @@
     padding: 40px 10px 10px 10px;
 }
 
+.btn-exit {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
 header {
     height: 60px;
     background-color: #F2CD00;
@@ -79,10 +85,6 @@ header {
     align-items: center;
     justify-content: center;
     gap: 30px;
-}
-
-button#btn-correct {
-    display: none;
 }
 
 button#btn-correct,

@@ -1,18 +1,34 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const memoryGame = document.querySelector('.content-game');
-  const correctButton = document.getElementById('btn-correct');
-  let cards = Array.from(memoryGame.children);
+document.addEventListener("DOMContentLoaded", () => {
+  const memoryGame = document.querySelector(".content-game");
+  const correctButton = document.getElementById("btn-correct");
   let hasFlippedCard = false;
   let firstCard, secondCard;
-  let lockBoard = false; // Variável para bloquear o tabuleiro
-  let canCheckForMatch = false; // Controle para só permitir checkForMatch() após meio segundo
+  let lockBoard = false;
+  let canCheckForMatch = false;
 
-  // Função que gera os cards
+  // Função para embaralhar as cartas
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex]
+      ];
+    }
+
+    return array;
+  }
+
+  // Função para gerar as cartas
   function gerarCards(modelo) {
-    const contentGame = document.querySelector('.content-game');
-    contentGame.innerHTML = ''; // Limpa os cards existentes antes de adicionar novos
+    memoryGame.innerHTML = "";
 
-    modelo.map(item => {
+    modelo.forEach(item => {
       let cardStructure = `
           <div class="card" data-term="${item.dataTerm}">
               <div class="face front">
@@ -27,171 +43,110 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
       `;
 
-      contentGame.innerHTML += cardStructure;
+      memoryGame.innerHTML += cardStructure;
     });
 
-    // Após adicionar os cards, vamos adicionar os event listeners
-    const cards = document.querySelectorAll('.card'); // Repega os cards que acabamos de adicionar
+    let cards = Array.from(memoryGame.children);
+    cards = shuffle(cards); // Embaralhar as cartas
 
-    // Adiciona o evento de clique para cada card
-    cards.forEach(card => card.addEventListener('click', flipCard));
+    // Adicionar as cartas embaralhadas ao DOM
+    cards.forEach(card => memoryGame.appendChild(card));
+
+    // Adicionar o evento de clique para virar as cartas
+    cards.forEach(card => card.addEventListener("click", flipCard));
   }
 
   // Função para virar a carta
   function flipCard() {
-    if (lockBoard) return; // Bloqueia o tabuleiro enquanto duas cartas estão viradas
-    if (this === firstCard) return; // Impede clicar na mesma carta duas vezes
+    if (lockBoard || this === firstCard) return;
 
-    this.classList.add('flipped');
+    this.classList.add("flipped");
 
     if (!hasFlippedCard) {
-      // Primeira carta clicada
       hasFlippedCard = true;
       firstCard = this;
       return;
     }
 
-    // Segunda carta clicada
     secondCard = this;
     hasFlippedCard = false;
-
-    // Bloqueia o tabuleiro até o jogador verificar com o botão "Correto"
     lockBoard = true;
 
-    // Permite chamar checkForMatch() após 1 segundo
     setTimeout(() => {
-      correctButton.removeAttribute('disabled');
-      canCheckForMatch = true; // Agora é possível chamar checkForMatch()
-    }, 400); // meio segundo de espera
+      correctButton.removeAttribute("disabled");
+      canCheckForMatch = true;
+    }, 400);
   }
 
-  const op1 = document.getElementById('op1');
-  const op2 = document.getElementById('op2');
-
-  // Evento de clique para op1 (HTML Cards)
-  op1.addEventListener('click', () => {
-    gerarCards(modeloHTML); // Usa o array modeloHTML
-  });
-
-  // Evento de clique para op2 (CSS Cards)
-  op2.addEventListener('click', () => {
-    gerarCards(modeloCSS); // Usa o array modeloCSS
-  });
-
-  // Recupera o nome do jogador do localStorage
-  const playerName = localStorage.getItem('player');
-
-  // Exibe o nome do jogador no elemento HTML
-  document.getElementById('player-display').innerText = playerName;
-
-  // Função para embaralhar as cartas usando o algoritmo de Fisher-Yates
-  function shuffle(array) {
-    let currentIndex = array.length,
-      randomIndex;
-
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-
-    return array;
-  }
-
-  // Embaralha as cartas
-  const shuffledCards = shuffle(cards);
-
-  // Remove todas as cartas do jogo
-  memoryGame.innerHTML = '';
-
-  // Adiciona as cartas embaralhadas de volta ao contêiner
-  shuffledCards.forEach(card => memoryGame.appendChild(card));
-
-  // Seleciona novamente as cartas após embaralhar
-  cards = document.querySelectorAll('.card');
-
-  // Função para virar a carta
-  function flipCard() {
-    if (lockBoard) return; // Bloqueia o tabuleiro enquanto duas cartas estão viradas
-    if (this === firstCard) return; // Impede clicar na mesma carta duas vezes
-
-    this.classList.add('flipped');
-
-    if (!hasFlippedCard) {
-      // Primeira carta clicada
-      hasFlippedCard = true;
-      firstCard = this;
-      return;
-    }
-
-    // Segunda carta clicada
-    secondCard = this;
-    hasFlippedCard = false;
-
-    // Bloqueia o tabuleiro até o jogador verificar com o botão "Correto"
-    lockBoard = true;
-
-    // Permite chamar checkForMatch() após 1 segundo
-    setTimeout(() => {
-      correctButton.removeAttribute('disabled');
-      canCheckForMatch = true; // Agora é possível chamar checkForMatch()
-    }, 400); // meio segundo de espera
-  }
-
-  // Função que será executada ao clicar no botão "Correto"
+  // Função para verificar se há correspondência entre as cartas
   function checkForMatch() {
-    if (!canCheckForMatch || !firstCard || !secondCard) return; // Verifica se pode chamar a função e se as duas cartas estão viradas
+    if (!canCheckForMatch || !firstCard || !secondCard) return;
 
     if (firstCard.dataset.term === secondCard.dataset.term) {
-      // Par correto
       disableCards();
     } else {
-      // Par incorreto - mantém as cartas viradas até o jogador decidir virar outra
       unflipCards();
     }
 
-    canCheckForMatch = false; // Reseta a permissão para impedir várias chamadas seguidas
-    correctButton.setAttribute('disabled', '');
+    canCheckForMatch = false;
+    correctButton.setAttribute("disabled", "");
   }
 
-  // Desativa as cartas (remover evento de clique)
+  // Desativar cartas correspondentes
   function disableCards() {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
-    firstCard.classList.add('disable');
-    secondCard.classList.add('disable');
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    firstCard.classList.add("disable");
+    secondCard.classList.add("disable");
     resetBoard();
   }
 
-  // Função para desvirar as cartas (somente quando o par estiver incorreto e o botão "Correto" for clicado)
+  // Virar as cartas de volta se não corresponderem
   function unflipCards() {
     setTimeout(() => {
-      firstCard.classList.remove('flipped');
-      secondCard.classList.remove('flipped');
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
       resetBoard();
-    }, 0);
+    }, 1000);
   }
 
-  // Reseta as variáveis de controle
+  // Resetar as variáveis de controle do jogo
   function resetBoard() {
     [hasFlippedCard, lockBoard] = [false, false];
     [firstCard, secondCard] = [null, null];
   }
 
-  // Adiciona o evento de clique para as cartas
-  cards.forEach(card => card.addEventListener('click', flipCard));
+  // Configurações iniciais do jogador e escolha do jogo
+  const playerName = localStorage.getItem("player");
+  const choiceGame = localStorage.getItem("choice_game");
 
-  // Adiciona o evento de clique para o botão "Correto"
-  correctButton.addEventListener('click', checkForMatch);
+  document.getElementById("player-display").innerText = playerName;
+  document.getElementById("choice-display").innerText = choiceGame;
 
-  // Adiciona o evento de pressionar a tecla "Espaço" para verificar o par
-  document.addEventListener('keydown', event => {
-    if (event.code === 'Space') {
-      checkForMatch(); // Chama a função quando a tecla Espaço for pressionada
+  // Selecionar o modelo correto com base na escolha do jogo
+  let modelo;
+  switch (choiceGame) {
+    case "modeloHTML":
+      modelo = modeloHTML;
+      break;
+    case "modeloCSS":
+      modelo = modeloCSS;
+      break;
+    case "modeloJS":
+      modelo = modeloJS;
+      break;
+  }
+
+  // Gerar e embaralhar as cartas
+  gerarCards(modelo);
+
+  // Eventos
+  correctButton.addEventListener("click", checkForMatch);
+
+  // Tecla de atalho para verificar a correspondência (espaço)
+  document.addEventListener("keydown", event => {
+    if (event.code === "Space") {
+      checkForMatch();
     }
   });
 });

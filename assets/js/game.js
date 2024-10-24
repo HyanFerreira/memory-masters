@@ -1,28 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const memoryGame = document.querySelector('.content-game');
-  const correctButton = document.getElementById('btn-correct');
-  let cards = Array.from(memoryGame.children);
+document.addEventListener("DOMContentLoaded", () => {
+  const memoryGame = document.querySelector(".content-game");
+  const correctButton = document.getElementById("btn-correct");
+  const btnExit = document.getElementById("btn-exit");
   let hasFlippedCard = false;
   let firstCard, secondCard;
   let lockBoard = false;
   let canCheckForMatch = false;
-  let options = document.querySelectorAll('.options button');
 
-  options.forEach(item => {
-    item.addEventListener('click', () => {
-      options.forEach(item => {
-        item.classList.remove('active');
-      });
-      item.classList.add('active');
-      correctButton.style.display = 'flex';
-    });
+  btnExit.addEventListener("click", () => {
+    window.location.href = "../index.html";
   });
 
-  function gerarCards(modelo) {
-    const contentGame = document.querySelector('.content-game');
-    contentGame.innerHTML = '';
+  // Função para embaralhar as cartas
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
 
-    modelo.map(item => {
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex]
+      ];
+    }
+
+    return array;
+  }
+
+  // Função para gerar as cartas
+  function gerarCards(modelo) {
+    memoryGame.innerHTML = "";
+
+    modelo.forEach(item => {
       let cardStructure = `
           <div class="card" data-term="${item.dataTerm}">
               <div class="face front">
@@ -37,19 +48,24 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
       `;
 
-      contentGame.innerHTML += cardStructure;
+      memoryGame.innerHTML += cardStructure;
     });
 
-    const cards = document.querySelectorAll('.card');
+    let cards = Array.from(memoryGame.children);
+    cards = shuffle(cards); // Embaralhar as cartas
 
-    cards.forEach(card => card.addEventListener('click', flipCard));
+    // Adicionar as cartas embaralhadas ao DOM
+    cards.forEach(card => memoryGame.appendChild(card));
+
+    // Adicionar o evento de clique para virar as cartas
+    cards.forEach(card => card.addEventListener("click", flipCard));
   }
 
+  // Função para virar a carta
   function flipCard() {
-    if (lockBoard) return;
-    if (this === firstCard) return;
+    if (lockBoard || this === firstCard) return;
 
-    this.classList.add('flipped');
+    this.classList.add("flipped");
 
     if (!hasFlippedCard) {
       hasFlippedCard = true;
@@ -59,78 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     secondCard = this;
     hasFlippedCard = false;
-
     lockBoard = true;
 
     setTimeout(() => {
-      correctButton.removeAttribute('disabled');
+      correctButton.removeAttribute("disabled");
       canCheckForMatch = true;
     }, 400);
   }
 
-  const op1 = document.getElementById('op1');
-  const op2 = document.getElementById('op2');
-
-  op1.addEventListener('click', () => {
-    gerarCards(modeloHTML);
-  });
-
-  op2.addEventListener('click', () => {
-    gerarCards(modeloCSS);
-  });
-
-  const playerName = localStorage.getItem('player');
-
-  document.getElementById('player-display').innerText = playerName;
-
-  function shuffle(array) {
-    let currentIndex = array.length,
-      randomIndex;
-
-    while (currentIndex !== 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-
-    return array;
-  }
-
-  const shuffledCards = shuffle(cards);
-
-  memoryGame.innerHTML = '';
-
-  shuffledCards.forEach(card => memoryGame.appendChild(card));
-
-  cards = document.querySelectorAll('.card');
-
-  function flipCard() {
-    if (lockBoard) return;
-    if (this === firstCard) return;
-
-    this.classList.add('flipped');
-
-    if (!hasFlippedCard) {
-      hasFlippedCard = true;
-      firstCard = this;
-      return;
-    }
-
-    secondCard = this;
-    hasFlippedCard = false;
-
-    lockBoard = true;
-
-    setTimeout(() => {
-      correctButton.removeAttribute('disabled');
-      canCheckForMatch = true;
-    }, 400);
-  }
-
+  // Função para verificar se há correspondência entre as cartas
   function checkForMatch() {
     if (!canCheckForMatch || !firstCard || !secondCard) return;
 
@@ -141,36 +94,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     canCheckForMatch = false;
-    correctButton.setAttribute('disabled', '');
+    correctButton.setAttribute("disabled", "");
   }
 
+  // Desativar cartas correspondentes
   function disableCards() {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
-    firstCard.classList.add('disable');
-    secondCard.classList.add('disable');
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    firstCard.classList.add("disable");
+    secondCard.classList.add("disable");
     resetBoard();
   }
 
+  // Virar as cartas de volta se não corresponderem
   function unflipCards() {
     setTimeout(() => {
-      firstCard.classList.remove('flipped');
-      secondCard.classList.remove('flipped');
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
       resetBoard();
-    }, 0);
+    }, 1000);
   }
 
+  // Resetar as variáveis de controle do jogo
   function resetBoard() {
     [hasFlippedCard, lockBoard] = [false, false];
     [firstCard, secondCard] = [null, null];
   }
 
-  cards.forEach(card => card.addEventListener('click', flipCard));
+  // Configurações iniciais do jogador e escolha do jogo
+  const playerName = localStorage.getItem("player");
+  const choiceGame = localStorage.getItem("choice_game");
 
-  correctButton.addEventListener('click', checkForMatch);
+  document.getElementById("player-display").innerText = playerName;
+  document.getElementById("choice-display").innerText = choiceGame;
 
-  document.addEventListener('keydown', event => {
-    if (event.code === 'Space') {
+  // Selecionar o modelo correto com base na escolha do jogo
+  let modelo;
+  switch (choiceGame) {
+    case "modeloHTML":
+      modelo = modeloHTML;
+      break;
+    case "modeloCSS":
+      modelo = modeloCSS;
+      break;
+    case "modeloJS":
+      modelo = modeloJS;
+      break;
+  }
+
+  // Gerar e embaralhar as cartas
+  gerarCards(modelo);
+
+  // Eventos
+  correctButton.addEventListener("click", checkForMatch);
+
+  // Tecla de atalho para verificar a correspondência (espaço)
+  document.addEventListener("keydown", event => {
+    if (event.code === "Space") {
       checkForMatch();
     }
   });

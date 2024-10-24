@@ -7,7 +7,7 @@
 
 .content-player {
     width: 320px;
-    height: 400px;
+    height: 420px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -15,6 +15,7 @@
     border-radius: 15px;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: hidden;
 }
 
 .logotipo {
@@ -39,6 +40,13 @@
     display: flex;
     flex-direction: column;
     z-index: 99;
+    transition: ease-in-out .3s;
+    transform: translateX(calc(-100% - 20px));
+}
+
+.playerName.active {
+    /* transform: translateX(calc(-100% - 20px)); */
+    transform: translateX(0);
 }
 
 .playerOption {
@@ -48,17 +56,26 @@
     display: flex;
     flex-direction: column;
     z-index: 9;
+    transform: translateX(calc(100% + 20px));
+    /* transform: translateX(0); */
+    transition: ease-in-out .3s;
 }
 
-.form-player {
+.playerOption.active {
+    transform: translateX(0);
+}
+
+.form-player,
+.content-game {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-end;
+    /* align-items: flex-end; */
     flex-grow: 1;
 }
 
-.form-player button {
+.form-player button,
+.btns-game {
     align-self: flex-end;
 }
 
@@ -68,6 +85,22 @@
     height: 50px;
     display: flex;
     align-items: flex-end;
+}
+
+.clear-name {
+    position: absolute;
+    top: 55%;
+    right: 10px;
+    transform: translate(0, -50%);
+    padding: 5px;
+    font-size: .9rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+}
+
+.clear-name.active {
+    display: block;
 }
 
 .label-input label {
@@ -117,4 +150,53 @@
     background-color: rgba(15, 15, 15, 0.6);
     color: rgba(242, 206, 0, 0.8);
     cursor: auto;
+}
+
+.options-game {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.options-game input[type="radio"] {
+    display: none;
+}
+
+.options-game label {
+    position: relative;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 2px solid #0F0F0F;
+    border-radius: 5px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.options-game label::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    border: 2px solid #0F0F0F;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.options-game input[type="radio"]:checked+label {
+    background-color: #0F0F0F;
+    color: #F2CD00;
+}
+
+.options-game input[type="radio"]:checked+label::before {
+    width: 10px;
+    height: 10px;
+    border: 5px solid #F2CD00;
+}
+
+.btns-game {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
