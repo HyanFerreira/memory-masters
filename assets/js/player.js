@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
   function saveOptionGame() {
     const choice = document.querySelector('input[name="option"]:checked').value;
     localStorage.setItem("choice_game", choice);
+    sessionStorage.setItem('startTime', Date.now());
     window.location.href = "../pages/game.html";
   }
 

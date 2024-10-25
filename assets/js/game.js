@@ -2,10 +2,79 @@ document.addEventListener("DOMContentLoaded", () => {
   const memoryGame = document.querySelector(".content-game");
   const correctButton = document.getElementById("btn-correct");
   const btnExit = document.getElementById("btn-exit");
+  const hamburguer = document.querySelector(".hamburguer");
+  const asideMenu = document.getElementById("aside-menu");
+  const btnCloseMenu = document.getElementById("btn-close-menu");
+  const btnReset = document.getElementById("btn-reset");
+  const modal = document.querySelector(".modal");
   let hasFlippedCard = false;
   let firstCard, secondCard;
   let lockBoard = false;
   let canCheckForMatch = false;
+  let timer;
+  let seconds = 0;
+  let timeRun = true;
+
+  const reloadPage = () => {
+    location.reload();
+  };
+
+  btnReset.addEventListener("click", reloadPage);
+
+  const hamburguerMenu = () => {
+    const allCards = document.querySelectorAll(".card");
+    const allMatched = Array.from(allCards).every(card =>
+      card.classList.contains("disable")
+    );
+
+    if (!allMatched) {
+      if (timeRun) {
+        stopTimer();
+        timeRun = false;
+        console.log(timeRun);
+      } else {
+        startTimer();
+        timeRun = true;
+        console.log(timeRun);
+      }
+    }
+
+    asideMenu.classList.toggle("active");
+    modal.classList.toggle("active");
+    hamburguer.classList.toggle("active");
+  };
+
+  hamburguer.addEventListener("click", hamburguerMenu);
+  btnCloseMenu.addEventListener("click", hamburguerMenu);
+  modal.addEventListener("click", hamburguerMenu);
+
+  const formatTime = seconds => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return (
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(remainingSeconds).padStart(2, "0")
+    );
+  };
+
+  const startTimer = () => {
+    if (!timer) {
+      timer = setInterval(() => {
+        seconds++;
+        document.getElementById("timer-display").innerHTML = formatTime(
+          seconds
+        );
+      }, 1000);
+    }
+  };
+
+  const stopTimer = () => {
+    clearInterval(timer);
+    timer = null;
+  };
+
+  startTimer();
 
   btnExit.addEventListener("click", () => {
     window.location.href = "../index.html";
@@ -97,6 +166,21 @@ document.addEventListener("DOMContentLoaded", () => {
     correctButton.setAttribute("disabled", "");
   }
 
+  // Função que verifica se todas as cartas estão desativadas
+  function checkIfGameIsComplete() {
+    const allCards = document.querySelectorAll(".card");
+    const allMatched = Array.from(allCards).every(card =>
+      card.classList.contains("disable")
+    );
+
+    if (allMatched) {
+      setTimeout(() => {
+        stopTimer();
+        alert("Parabéns! Você completou o jogo!");
+      }, 400);
+    }
+  }
+
   // Desativar cartas correspondentes
   function disableCards() {
     firstCard.removeEventListener("click", flipCard);
@@ -104,6 +188,9 @@ document.addEventListener("DOMContentLoaded", () => {
     firstCard.classList.add("disable");
     secondCard.classList.add("disable");
     resetBoard();
+
+    // Chama a função para verificar se o jogo foi completado
+    checkIfGameIsComplete();
   }
 
   // Virar as cartas de volta se não corresponderem
@@ -112,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
       firstCard.classList.remove("flipped");
       secondCard.classList.remove("flipped");
       resetBoard();
-    }, 1000);
+    }, 100);
   }
 
   // Resetar as variáveis de controle do jogo
@@ -136,9 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
       break;
     case "modeloCSS":
       modelo = modeloCSS;
-      break;
-    case "modeloJS":
-      modelo = modeloJS;
       break;
   }
 

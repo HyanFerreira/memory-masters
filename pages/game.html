@@ -10,16 +10,40 @@
 </head>
 
 <body>
-    <div class="btn-exit">
-        <button id="btn-exit">Sair</button>
-    </div>
+    <div class="modal"></div>
+    <aside id="aside-menu">
+        <div class="menu-topbar">
+            <h1>MENU</h1>
+            <button class="btn" id="btn-close-menu">X</button>
+        </div>
+        <div class="content-menu">
+            <div class="logotipo">
+                <img src="../assets/img/memory_masters_two.svg" alt="Memory Masters">
+            </div>
+            <div class="btn-reset">
+                <button class="btn" id="btn-reset">Resetar</button>
+            </div>
+            <div class="btn-exit">
+                <button class="btn" id="btn-exit">Sair</button>
+            </div>
+        </div>
+    </aside>
     <div id="page-game">
         <header>
-            <div class="player-name">
-                <h1 id="player-display">Player</h1>
+            <div class="game-menu">
+                <div class="hamburguer">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <div class="player-name">
+                    <h1 id="player-display">Player</h1>
+                </div>
             </div>
-            <div class="choice-game">
+            <div class="timer-and-choice">
                 <h1 id="choice-display">Choice</h1>
+                <span></span>
+                <h1 id="timer-display">00:00</h1>
             </div>
         </header>
         <div class="content-game">

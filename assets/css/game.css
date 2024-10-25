@@ -5,10 +5,92 @@
     padding: 40px 10px 10px 10px;
 }
 
-.btn-exit {
+.modal {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(15, 15, 15, .6);
+    z-index: 9999;
+    transform: translateX(-100%);
+    transition: ease-in-out .2s;
+}
+
+aside {
+    position: absolute;
+    z-index: 99999;
+    width: 280px;
+    height: 100vh;
+    background-color: #F2CD00;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: translateX(-100%);
+    transition: ease-in-out .3s;
+}
+
+aside.active,
+.modal.active {
+    transform: translateX(0);
+}
+
+.content-menu {
+    position: relative;
+    height: 100%;
+    padding: 100px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-topbar {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    z-index: 99999;
+}
+
+.menu-topbar h1 {
+    margin: 0;
+}
+
+.logotipo {
+    display: grid;
+    place-items: center;
+    margin-bottom: 50px;
+}
+
+.btn {
+    height: 38px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 0;
+    font-size: 1rem;
+    color: #F2CD00;
+    background-color: #0F0F0F;
+    cursor: pointer;
+    font-weight: 500;
+    transition: ease-in-out .2s;
+}
+
+#btn-close-menu,
+#btn-reset {
+    background-color: transparent;
+    border: 2px solid #0F0F0F;
+    color: #0F0F0F;
+}
+
+#btn-close-menu:hover,
+#btn-reset:hover {
+    background-color: #0F0F0F;
+    color: #F2CD00;
+}
+
+#btn-exit,
+#btn-reset {
+    width: 100%;
 }
 
 header {
@@ -17,7 +99,58 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.game-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.hamburguer {
+    transition: all 900ms;
+    cursor: pointer;
+}
+
+.hamburguer.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburguer.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburguer.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.bar {
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 3px;
+    margin: 5px auto;
+    background-color: #0F0F0F;
+    transition: all 0.3s ease-in-out;
+}
+
+.timer-and-choice {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.timer-and-choice h1,
+.player-name h1 {
+    font-size: 1.4rem;
+}
+
+.timer-and-choice span {
+    width: 10px;
+    height: 4px;
+    background-color: #0F0F0F;
 }
 
 .player-name h1,
@@ -87,8 +220,7 @@ header {
     gap: 30px;
 }
 
-button#btn-correct,
-.options button {
+button#btn-correct {
     padding: 10px 15px;
     border-radius: 10px;
     border: 0;
