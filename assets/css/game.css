@@ -5,7 +5,8 @@
     padding: 40px 10px 10px 10px;
 }
 
-.modal {
+.modal,
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,6 +16,14 @@
     z-index: 9999;
     transform: translateX(-100%);
     transition: ease-in-out .2s;
+}
+
+.overlay {
+    transform: translateY(-100%);
+}
+
+.overlay.active {
+    transform: translateY(0);
 }
 
 aside {
@@ -31,6 +40,43 @@ aside {
 aside.active,
 .modal.active {
     transform: translateX(0);
+}
+
+.aside-finish-game {
+    position: absolute;
+    z-index: 9999999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -1000px);
+    background-color: #F2CD00;
+    width: 300px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: ease-in-out .5s;
+}
+
+.aside-finish-game.active {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.content-finish-game h1 {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.content-finish-game {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.options-finish-game {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .content-menu {
@@ -76,20 +122,27 @@ aside.active,
 }
 
 #btn-close-menu,
-#btn-reset {
+#btn-reset,
+#btn-reset-fg,
+#btn-mudar-tema {
     background-color: transparent;
     border: 2px solid #0F0F0F;
     color: #0F0F0F;
 }
 
 #btn-close-menu:hover,
-#btn-reset:hover {
+#btn-reset:hover,
+#btn-reset-fg:hover,
+#btn-mudar-tema:hover {
     background-color: #0F0F0F;
     color: #F2CD00;
 }
 
 #btn-exit,
-#btn-reset {
+#btn-reset,
+#btn-exit-fg, 
+#btn-reset-fg,
+#btn-mudar-tema {
     width: 100%;
 }
 

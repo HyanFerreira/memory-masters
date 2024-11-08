@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCloseMenu = document.getElementById("btn-close-menu");
   const btnReset = document.getElementById("btn-reset");
   const modal = document.querySelector(".modal");
+  const overlay = document.querySelector(".overlay");
+  const asideFinishGame = document.querySelector(".aside-finish-game");
+  const btnResetFG = document.getElementById("btn-reset-fg");
+  const btnExitFG = document.getElementById("btn-exit-fg");
   let hasFlippedCard = false;
   let firstCard, secondCard;
   let lockBoard = false;
@@ -20,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   btnReset.addEventListener("click", reloadPage);
+  btnResetFG.addEventListener("click", reloadPage);
 
   const hamburguerMenu = () => {
     const allCards = document.querySelectorAll(".card");
@@ -39,9 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    asideMenu.classList.toggle("active");
-    modal.classList.toggle("active");
-    hamburguer.classList.toggle("active");
+    if (!allMatched) {
+      asideMenu.classList.toggle("active");
+      modal.classList.toggle("active");
+      hamburguer.classList.toggle("active");
+    }
   };
 
   hamburguer.addEventListener("click", hamburguerMenu);
@@ -77,6 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
   startTimer();
 
   btnExit.addEventListener("click", () => {
+    window.location.href = "../index.html";
+  });
+
+  btnExitFG.addEventListener("click", () => {
     window.location.href = "../index.html";
   });
 
@@ -176,7 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (allMatched) {
       setTimeout(() => {
         stopTimer();
-        alert("Parabéns! Você completou o jogo!");
+        overlay.classList.add("active");
+        asideFinishGame.classList.add("active");
       }, 400);
     }
   }
@@ -236,6 +248,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", event => {
     if (event.code === "Space") {
       checkForMatch();
+    }
+  });
+
+  // Tecla de atalho para pausar o jogo
+  document.addEventListener("keydown", event => {
+    if (event.code === "Escape") {
+      hamburguerMenu();
     }
   });
 });
