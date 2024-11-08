@@ -2,7 +2,7 @@
     max-width: 1200px;
     height: 100vh;
     margin: 0 auto;
-    padding: 40px 10px 10px 10px;
+    padding: 20px 10px 10px 10px;
 }
 
 .modal,
@@ -212,7 +212,7 @@ header {
 }
 
 .content-game {
-    padding: 50px 0;
+    padding: 40px 0;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 30px;
@@ -236,6 +236,11 @@ header {
 
 .face-reverse {
     transform: rotateY(180deg);
+    padding: 10px;
+}
+
+.face-reverse p {
+    text-align: center;
 }
 
 .front {
@@ -267,7 +272,7 @@ header {
 }
 
 .menu {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     gap: 30px;

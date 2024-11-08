@@ -19,6 +19,21 @@ document.addEventListener("DOMContentLoaded", () => {
   let seconds = 0;
   let timeRun = true;
 
+  const displayAllCards = () => {
+    const allCards = document.querySelectorAll(".card");
+
+    setTimeout(() => {
+      allCards.forEach(item => {
+        item.classList.add("flipped");
+      });
+    }, 500);
+    setTimeout(() => {
+      allCards.forEach(item => {
+        item.classList.remove("flipped");
+      });
+    }, 2500);
+  };
+
   const reloadPage = () => {
     location.reload();
   };
@@ -257,4 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburguerMenu();
     }
   });
+
+  displayAllCards();
 });

@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
   clearName.addEventListener("click", () => {
     playerName.value = "";
     clearName.classList.remove("active");
+    nextButton.setAttribute("disabled", "");
   });
 
   const savedPlayerName = localStorage.getItem("player");
