@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let timer;
   let seconds = 0;
   let timeRun = true;
+  let landscapeModeActivated = false;
 
   const displayAllCards = () => {
     const allCards = document.querySelectorAll(".card");
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       allCards.forEach(item => {
         item.classList.remove("flipped");
       });
+      startTimer();
     }, 2500);
   };
 
@@ -96,8 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
     timer = null;
   };
 
-  startTimer();
-
   btnExit.addEventListener("click", () => {
     window.location.href = "../index.html";
   });
@@ -152,8 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Adicionar as cartas embaralhadas ao DOM
     cards.forEach(card => memoryGame.appendChild(card));
 
-    // Adicionar o evento de clique para virar as cartas
-    cards.forEach(card => card.addEventListener("click", flipCard));
+    setTimeout(() => {
+      // Adicionar o evento de clique para virar as cartas
+      cards.forEach(card => card.addEventListener("click", flipCard));
+    }, 2500);
   }
 
   // Função para virar a carta
@@ -229,6 +231,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
   }
 
+  // Habilitar modo paisagem nos cards
+  const landscapeMode = () => {
+    const memoryGame = document.querySelector(".content-game");
+    const faceReverse = document.querySelectorAll(".face-reverse");
+    const allCards = document.querySelectorAll(".card");
+
+    memoryGame.classList.add("landscape-mode");
+    faceReverse.forEach(item => {
+      item.classList.add("landscape-mode");
+    });
+    allCards.forEach(item => {
+      item.classList.add("landscape-mode");
+    });
+  };
+
   // Resetar as variáveis de controle do jogo
   function resetBoard() {
     [hasFlippedCard, lockBoard] = [false, false];
@@ -248,8 +265,9 @@ document.addEventListener("DOMContentLoaded", () => {
     case "modeloHTML":
       modelo = modeloHTML;
       break;
-    case "modeloCSS":
-      modelo = modeloCSS;
+    case "modeloGeografia":
+      modelo = modeloGeografia;
+      landscapeModeActivated = true;
       break;
   }
 
@@ -274,4 +292,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   displayAllCards();
+
+  if (landscapeModeActivated) {
+    landscapeMode();
+  }
 });

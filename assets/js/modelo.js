@@ -1,149 +1,155 @@
 let modeloHTML = [
   {
-    id: 1,
     dataTerm: "h1",
     text: "Tag: &lt;h1&gt;",
     img: ""
   },
   {
-    id: 2,
     dataTerm: "h1",
     text: "Título principal de uma página",
     img: ""
   },
   {
-    id: 3,
     dataTerm: "p",
     text: "Tag: &lt;p&gt;",
     img: ""
   },
   {
-    id: 4,
     dataTerm: "p",
     text: "Parágrafo de texto",
     img: ""
   },
   {
-    id: 5,
     dataTerm: "img",
     text: "Tag: &lt;img&gt;",
     img: ""
   },
   {
-    id: 6,
     dataTerm: "img",
     text: "Exibe uma imagem na página",
     img: ""
   },
   {
-    id: 7,
     dataTerm: "a",
     text: "Tag: &lt;a&gt;",
     img: ""
   },
   {
-    id: 8,
     dataTerm: "a",
     text: "Cria um link clicável",
     img: ""
   },
   {
-    id: 9,
     dataTerm: "src",
     text: "Atributo: src",
     img: ""
   },
   {
-    id: 10,
     dataTerm: "src",
     text: "Caminho para um arquivo (imagem ou script)",
     img: ""
   },
   {
-    id: 11,
     dataTerm: "alt",
     text: "Atributo: alt",
     img: ""
   },
   {
-    id: 12,
     dataTerm: "alt",
     text: "Texto alternativo para imagens",
     img: ""
   },
   {
-    id: 13,
     dataTerm: "html",
     text: "Tag: &lt;html&gt;",
     img: ""
   },
   {
-    id: 14,
     dataTerm: "html",
     text: "Define o início e o fim de um documento HTML",
     img: ""
   },
   {
-    id: 15,
     dataTerm: "body",
     text: "Tag: &lt;body&gt;",
     img: ""
   },
   {
-    id: 16,
     dataTerm: "body",
     text: "Contém o conteúdo visível da página",
     img: ""
   },
   {
-    id: 17,
     dataTerm: "head",
     text: "Tag: &lt;head&gt;",
     img: ""
   },
   {
-    id: 18,
     dataTerm: "head",
     text: "Contém metadados e links para recursos externos",
     img: ""
   }
 ];
 
-let modeloCSS = [
+let modeloGeografia = [
   {
-    id: 1,
-    dataTerm: "css",
-    text: "CSS",
-    img: ""
+    dataTerm: "caatinga",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/caatinga.jpg"
   },
   {
-    id: 2,
-    dataTerm: "css",
-    text: "CSS3",
-    img: ""
+    dataTerm: "caatinga",
+    text: "",
+    img: "../assets/img/geografia/mapas_par2/mapa_caatinga.png"
   },
   {
-    id: 3,
-    dataTerm: "html",
-    text: "HTML",
-    img: ""
+    dataTerm: "coníferas_boreal",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/coníferas_boreal.jpg"
   },
   {
-    id: 4,
-    dataTerm: "html",
-    text: "HTML5",
-    img: ""
+    dataTerm: "coníferas_boreal",
+    text: "",
+    img: "../assets/img/geografia/mapas_par2/mapa_coniferas_boreal.png"
   },
   {
-    id: 5,
-    dataTerm: "js",
-    text: "JS",
-    img: ""
+    dataTerm: "deserto_frio",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/deserto_frio.jpg"
   },
   {
-    id: 6,
-    dataTerm: "js",
-    text: "JavaScript",
-    img: ""
+    dataTerm: "deserto_frio",
+    text: "",
+    img: "../assets/img/geografia/mapas_par2/mapa_desertos_frios.png"
+  },
+  {
+    dataTerm: "deserto_quente",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/deserto_quente.jpg"
+  },
+  {
+    dataTerm: "deserto_quente",
+    text: "",
+    img: "../assets/img/geografia/mapas_par2/mapa_desertos_quentes.png"
+  },
+  {
+    dataTerm: "floresta_temperada",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/floresta_temperada.jpg"
+  },
+  {
+    dataTerm: "floresta_temperada",
+    text: "",
+    img: "../assets/img/geografia/mapas_par2/mapa_floresta_temperada.png"
+  },
+  {
+    dataTerm: "floresta_tropical",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/floresta_tropical.jpg"
+  },
+  {
+    dataTerm: "floresta_tropical",
+    text: "",
+    img: "../assets/img/geografia/mapas_par2/mapa_floresta_tropical.png"
   }
 ];

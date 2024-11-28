@@ -140,7 +140,7 @@ aside.active,
 
 #btn-exit,
 #btn-reset,
-#btn-exit-fg, 
+#btn-exit-fg,
 #btn-reset-fg,
 #btn-mudar-tema {
     width: 100%;
@@ -293,4 +293,25 @@ button#btn-correct:disabled {
     background-color: rgb(242, 205, 0, 0.4);
     color: rgb(15, 15, 15, .6);
     cursor: default;
+}
+
+.content-game.landscape-mode {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.card.landscape-mode {
+    aspect-ratio: 4 / 3;
+}
+
+.face-reverse.landscape-mode p {
+    padding: 0;
+    display: none;
+}
+
+.face-reverse.landscape-mode img {
+    width: 100%;
+}
+
+.card.landscape-mode.disable .face-reverse.landscape-mode img {
+    opacity: 0.5;
 }
