@@ -304,8 +304,10 @@ button#btn-correct:disabled {
 }
 
 .face-reverse.landscape-mode p {
-    padding: 0;
-    display: none;
+    margin: 0;
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+    /* display: none; */
 }
 
 .face-reverse.landscape-mode img {

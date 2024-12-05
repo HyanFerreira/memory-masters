@@ -99,7 +99,7 @@ let modeloGeografia = [
   },
   {
     dataTerm: "caatinga",
-    text: "",
+    text: "Caatinga",
     img: "../assets/img/geografia/mapas_par2/mapa_caatinga.png"
   },
   {
@@ -109,7 +109,7 @@ let modeloGeografia = [
   },
   {
     dataTerm: "coníferas_boreal",
-    text: "",
+    text: "Coníferas Boreal",
     img: "../assets/img/geografia/mapas_par2/mapa_coniferas_boreal.png"
   },
   {
@@ -119,7 +119,7 @@ let modeloGeografia = [
   },
   {
     dataTerm: "deserto_frio",
-    text: "",
+    text: "Deserto Frio",
     img: "../assets/img/geografia/mapas_par2/mapa_desertos_frios.png"
   },
   {
@@ -129,7 +129,7 @@ let modeloGeografia = [
   },
   {
     dataTerm: "deserto_quente",
-    text: "",
+    text: "Deserto Quente",
     img: "../assets/img/geografia/mapas_par2/mapa_desertos_quentes.png"
   },
   {
@@ -139,7 +139,7 @@ let modeloGeografia = [
   },
   {
     dataTerm: "floresta_temperada",
-    text: "",
+    text: "Floresta Temperada",
     img: "../assets/img/geografia/mapas_par2/mapa_floresta_temperada.png"
   },
   {
@@ -149,7 +149,7 @@ let modeloGeografia = [
   },
   {
     dataTerm: "floresta_tropical",
-    text: "",
+    text: "Floresta Tropical",
     img: "../assets/img/geografia/mapas_par2/mapa_floresta_tropical.png"
   }
 ];
