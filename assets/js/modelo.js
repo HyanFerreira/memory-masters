@@ -151,5 +151,35 @@ let modeloGeografia = [
     dataTerm: "floresta_tropical",
     text: "Floresta Tropical",
     img: "../assets/img/geografia/mapas_par2/mapa_floresta_tropical.png"
-  }
+  },
+  {
+    dataTerm: "pradarias_estepes",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/pradarias_estepes.png" // Corrigir
+  },
+  {
+    dataTerm: "pradarias_estepes",
+    text: "Pradarias Estepes",
+    img: "../assets/img/geografia/mapas_par2/mapa_pradarias_e_estepes.png"
+  },
+  {
+    dataTerm: "savana_cerrado",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/savana_cerrado.jpg"
+  },
+  {
+    dataTerm: "savana_cerrado",
+    text: "Savana e Cerrado",
+    img: "../assets/img/geografia/mapas_par2/mapa_savana_e_cerrados.png"
+  },
+  {
+    dataTerm: "tundra",
+    text: "",
+    img: "../assets/img/geografia/biomas_par1/tundra.jpg"
+  },
+  {
+    dataTerm: "tundra",
+    text: "Tundra",
+    img: "../assets/img/geografia/mapas_par2/mapa_tundra.png"
+  },
 ];

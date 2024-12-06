@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         item.classList.remove("flipped");
       });
       startTimer();
-    }, 2500);
+    }, 4000);
   };
 
   const reloadPage = () => {
@@ -264,6 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
   switch (choiceGame) {
     case "modeloHTML":
       modelo = modeloHTML;
+      landscapeModeActivated = true;
       break;
     case "modeloGeografia":
       modelo = modeloGeografia;
