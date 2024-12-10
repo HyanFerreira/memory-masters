@@ -124,13 +124,32 @@ document.addEventListener("DOMContentLoaded", () => {
     return array;
   }
 
-  // Função para gerar as cartas
+  // Função para criptografar o termo com base no ID
+  function hashTerm(term, id) {
+    if (id % 2 === 0) {
+      return btoa([...term].reverse().join("")); // Para IDs pares, inverter o termo antes de codificar
+    }
+    return btoa(term); // Para IDs ímpares, codificar normalmente
+  }
+
+  // Função para descriptografar o termo com base no ID
+  function unhashTerm(hashedTerm, id) {
+    if (id % 2 === 0) {
+      return [...atob(hashedTerm)].reverse().join(""); // Para IDs pares, decodificar e reverter
+    }
+    return atob(hashedTerm); // Para IDs ímpares, decodificar normalmente
+  }
+
   function gerarCards(modelo) {
     memoryGame.innerHTML = "";
 
     modelo.forEach(item => {
+      // Criptografa o dataTerm com base no ID
+      let hashedTerm = hashTerm(item.dataTerm, item.id);
+
+      // Gera o card com o dataTerm criptografado
       let cardStructure = `
-          <div class="card" data-term="${item.dataTerm}">
+          <div class="card" data-id="${item.id}" data-term="${hashedTerm}">
               <div class="face front">
                   <div class="face-reverse">
                       <p>${item.text}</p>
@@ -180,11 +199,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 400);
   }
 
-  // Função para verificar se há correspondência entre as cartas
   function checkForMatch() {
     if (!canCheckForMatch || !firstCard || !secondCard) return;
 
-    if (firstCard.dataset.term === secondCard.dataset.term) {
+    // Pega os IDs das cartas
+    const firstCardId = parseInt(firstCard.dataset.id, 10);
+    const secondCardId = parseInt(secondCard.dataset.id, 10);
+
+    // Descriptografa os data-term com base nos IDs
+    const firstTerm = unhashTerm(firstCard.dataset.term, firstCardId);
+    const secondTerm = unhashTerm(secondCard.dataset.term, secondCardId);
+
+    if (firstTerm === secondTerm) {
       disableCards();
     } else {
       unflipCards();
